@@ -1,4 +1,2 @@
-# Папка что отслеживается
-folder_track = '/ПОЛНЫЙ_ПУТЬ_К_ВАШЕЙ_ПАПКЕ'
-# Папка куда будут перемещаться файлы
-folder_dest = '/ПОЛНЫЙ_ПУТЬ_К_ВАШЕЙ_ПАПКЕ'
+folder_track = '/Full path to your folder'
+folder_dest = '/Full path to your folder'
