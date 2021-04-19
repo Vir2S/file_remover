@@ -1,10 +1,10 @@
 FOLDER = {
-    "tracking": "/home/vir2s/Downloads/",
-    "destination": "/home/vir2s/Downloads/",
+    "tracking": "Full Path To Your Folder",
+    "destination": "Full Path To Your Folder",
 }
 
 EXTENSION = {
-    "photo": [
+    "image": [
         "jpg",
         "png",
         "svg",
@@ -19,6 +19,7 @@ EXTENSION = {
         "mov",
         "avi",
         "mkv",
+        "wmv",
     ],
     "pdf": [
         "pdf",

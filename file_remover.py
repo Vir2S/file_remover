@@ -20,22 +20,40 @@ class Handler(FileSystemEventHandler):
 				extension = filename.split(".")[-1]
 			except IndexError:
 				extension = ""
-			# If photo
-			if len(extension) > 1 and extension.lower() in self.extension_track["photo"]:
-				# move file into photos folder
+			# If image
+			if len(extension) > 1 and extension.lower() in self.extension_track["image"]:
+				# move file into images folder
 				file = self.folder_track + "/" + filename
-				new_path = self.folder_dest + "/Photos/" + filename
-				os.rename(file, new_path)
+				try:
+					new_path = self.folder_dest + "/Images/" + filename
+					os.rename(file, new_path)
+				except:
+					path = self.folder_dest + "/" + "Images"
+					os.mkdir(path)
+					new_path = path + "/" + filename
+					os.rename(file, new_path)
 			# If video then move into videos folder
 			elif len(extension) > 1 and extension.lower() in self.extension_track["video"]:
 				file = self.folder_track + "/" + filename
-				new_path = self.folder_dest + "/Videos/" + filename
-				os.rename(file, new_path)
+				try:
+					new_path = self.folder_dest + "/Videos/" + filename
+					os.rename(file, new_path)
+				except:
+					path = self.folder_dest + "/" + "Videos"
+					os.mkdir(path)
+					new_path = path + "/" + filename
+					os.rename(file, new_path)
 			# If pdf then move into pdfs folder
 			elif len(extension) > 1 and extension.lower() in self.extension_track["pdf"]:
 				file = self.folder_track + "/" + filename
-				new_path = self.folder_dest + "/Pdfs/" + filename
-				os.rename(file, new_path)
+				try:
+					new_path = self.folder_dest + "/Pdfs/" + filename
+					os.rename(file, new_path)
+				except:
+					path = self.folder_dest + "/" + "Pdfs"
+					os.mkdir(path)
+					new_path = path + "/" + filename
+					os.rename(file, new_path)
 
 
 # Start the program
