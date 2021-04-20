@@ -21,19 +21,22 @@ class Handler(FileSystemEventHandler):
 			except IndexError:
 				extension = ""
 
-			# Check files in extension_track dict
-			for key, value in self.extension_track.items():
-				if len(extension) > 1 and extension.lower() in value:
-					# move file into images folder
-					file = self.folder["tracking"] + "/" + filename
-					try:
-						new_path = self.folder["destination"] + "/" + key + "/" + filename
-						os.rename(file, new_path)
-					except:
-						path = self.folder["destination"] + "/" + key
-						os.mkdir(path)
-						new_path = path + "/" + filename
-						os.rename(file, new_path)
+			self.moving_files(filename, extension)
+
+	def moving_files(self, filename, extension):
+		# Check files in extension_track dict
+		for key, value in self.extension_track.items():
+			if len(extension) > 1 and extension.lower() in value:
+				# move file into images folder
+				file = self.folder["tracking"] + "/" + filename
+				try:
+					new_path = self.folder["destination"] + "/" + key + "/" + filename
+					os.rename(file, new_path)
+				except IOError:
+					path = self.folder["destination"] + "/" + key
+					os.mkdir(path)
+					new_path = path + "/" + filename
+					os.rename(file, new_path)
 
 
 # Start the program

@@ -24,6 +24,10 @@ EXTENSION = {
     ],
     "Pdfs": [
         "pdf",
+    ],
+    "Docs": [
+        "docx",
+        "doc",
     ]
 }
 
