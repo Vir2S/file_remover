@@ -4,7 +4,7 @@ FOLDER = {
 }
 
 EXTENSION = {
-    "image": [
+    "Images": [
         "jpg",
         "png",
         "svg",
@@ -14,14 +14,15 @@ EXTENSION = {
         "tiff",
         "ico",
     ],
-    "video": [
+    "Videos": [
         "mp4",
         "mov",
         "avi",
         "mkv",
         "wmv",
+        "webm",
     ],
-    "pdf": [
+    "Pdfs": [
         "pdf",
     ]
 }
