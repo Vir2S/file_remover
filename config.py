@@ -1,6 +1,8 @@
+# Insert Full Path To Your Folders
+
 FOLDER = {
-    "tracking": "Full Path To Your Folder",
-    "destination": "Full Path To Your Folder",
+    "tracking": "",
+    "destination": "",
 }
 
 EXTENSION = {

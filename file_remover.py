@@ -7,8 +7,6 @@ from watchdog.events import FileSystemEventHandler
 
 class Handler(FileSystemEventHandler):
 	folder = FOLDER
-	folder_track = FOLDER["tracking"]
-	folder["destination"] = FOLDER["destination"]
 	extension_track = EXTENSION
 
 	# If modified then moving files inside folder
