@@ -1,5 +1,5 @@
 import os
-import time
+from datetime import datetime
 from random import randint
 from config import *
 
@@ -44,8 +44,21 @@ class Handler:
 						new_path = new_filename + "_" + str(randint(1, 1000)) + "." + extension
 
 					os.rename(file, new_path)
+				print(f"File {filename} was successfully moved to {new_path}...")
 
 
-# Start the program
-handle = Handler()
-handle.get_files()
+def main():
+	# Start the program
+	start_time = datetime.now()
+
+	handle = Handler()
+	handle.get_files()
+
+	end_time = datetime.now()
+
+	execution_time = end_time - start_time
+	print("\nExecution time: ", execution_time)
+
+
+if __name__ == "__main__":
+	main()
