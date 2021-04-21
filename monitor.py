@@ -1,15 +1,16 @@
-import os
-from datetime import datetime
-from random import randint
 from config import *
+from watchdog.observers import Observer
+import os
+import time
+from watchdog.events import FileSystemEventHandler
 
 
-class Handler:
+class Handler(FileSystemEventHandler):
 	folder = FOLDER
 	extension_track = EXTENSION
 
 	# If modified then moving files inside folder
-	def get_files(self):
+	def on_modified(self, event):
 		# Moving all files inside tracking folder
 		for filename in os.listdir(self.folder["tracking"]):
 			# Check file extension
@@ -28,37 +29,25 @@ class Handler:
 				file = self.folder["tracking"] + "/" + filename
 				try:
 					new_path = self.folder["destination"] + "/" + key + "/" + filename
-
-					if os.path.isfile(new_path):
-						new_filename = new_path.rstrip("." + extension)
-						new_path = new_filename + "_" + str(randint(1, 1000)) + "." + extension
-
 					os.rename(file, new_path)
 				except IOError:
 					path = self.folder["destination"] + "/" + key
 					os.mkdir(path)
 					new_path = path + "/" + filename
-
-					if os.path.isfile(new_path):
-						new_filename = new_path.rstrip("." + extension)
-						new_path = new_filename + "_" + str(randint(1, 1000)) + "." + extension
-
 					os.rename(file, new_path)
-				print(f"File {filename} was successfully moved to {new_path}...")
 
 
-def main():
-	# Start the program
-	start_time = datetime.now()
+# Start the program
+handle = Handler()
+observer = Observer()
+observer.schedule(handle, FOLDER["tracking"], recursive=True)
+observer.start()
 
-	handle = Handler()
-	handle.get_files()
+# The code will checking every 10 milliseconds
+try:
+	while True:
+		time.sleep(10)
+except KeyboardInterrupt:
+	observer.stop()
 
-	end_time = datetime.now()
-
-	execution_time = end_time - start_time
-	print("\nExecution time: ", execution_time)
-
-
-if __name__ == "__main__":
-	main()
+observer.stop()

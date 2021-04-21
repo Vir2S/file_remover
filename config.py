@@ -1,5 +1,4 @@
 # Insert Full Path To Your Folders
-
 FOLDER = {
     "tracking": "",
     "destination": "",
